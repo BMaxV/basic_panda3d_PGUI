@@ -66,12 +66,22 @@ class Wrapper:
         F2 = PGVirtualFrame("Polo")
         
         E = PGEntry("Lima")
+        
         SF = PGScrollFrame("Alice")
         
         F.setup(0.2,0.3) # dimensions
         F2.setup(0.5,0.1)
         
         E.setup(10,3) # width and lines
+        
+        E.setText("this")
+        frame_style = E.getFrameStyle(1)
+        frame_style.setColor(0,0,0,1)
+        
+        # state 1 is INACTIVE
+        E.setFrameStyle(1,frame_style)
+        # state 1 is active
+        E.setFrameStyle(0,frame_style)
         
         # big frame, (inner x4), slider width, bevel
         SF.setup(0.5,0.5,-0.4,0.4,-0.8,0.8,0.1,0.05)
@@ -96,11 +106,11 @@ class Wrapper:
         
         # which didn't work for the frames for some reason
         my_id = F.get_id()
-        print(my_id)
+        
         self.event_handler.accept("within-"+str(my_id),print,["hello there"])
         
         my_id = F2.get_id()
-        print(my_id)
+        
         self.event_handler.accept("within-"+str(my_id),print,["hello there"])
         
         
